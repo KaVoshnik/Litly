@@ -31,15 +31,13 @@ import kotlin.math.abs
 @Composable
 fun BookCover(
     book: BookUi,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier.width(120.dp),
     onClick: () -> Unit = {}
 ) {
     val coverColor = LitlyCoverPalette[abs(book.id.hashCode()) % LitlyCoverPalette.size]
 
     Column(
-        modifier = modifier
-            .width(120.dp)
-            .clickable(onClick = onClick)
+        modifier = modifier.clickable(onClick = onClick)
     ) {
         Box(
             modifier = Modifier
