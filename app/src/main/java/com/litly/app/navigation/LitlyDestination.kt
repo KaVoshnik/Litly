@@ -8,16 +8,24 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.graphics.vector.ImageVector
 
 /**
- * Все маршруты приложения. Пока без аргументов — bookId и т.п.
- * добавим, когда дойдём до реальных данных (Sprint 3, 7).
+ * Все маршруты приложения.
  */
 sealed class LitlyDestination(val route: String) {
     data object Home : LitlyDestination("home")
     data object Catalog : LitlyDestination("catalog")
     data object Library : LitlyDestination("library")
     data object Profile : LitlyDestination("profile")
-    data object Book : LitlyDestination("book")
+
+    // Страница книги принимает id книги через аргумент маршрута.
+    data object Book : LitlyDestination("book/{$ARG_BOOK_ID}") {
+        fun createRoute(bookId: String) = "book/$bookId"
+    }
+
     data object Reader : LitlyDestination("reader")
+
+    companion object {
+        const val ARG_BOOK_ID = "bookId"
+    }
 }
 
 data class BottomNavItem(

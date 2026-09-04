@@ -25,10 +25,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.litly.app.ui.components.BookCover
 import com.litly.app.ui.components.GenreFilterChips
+import com.litly.app.ui.model.BookUi
 import com.litly.app.ui.model.MockLibrary
 
 @Composable
-fun CatalogScreen(modifier: Modifier = Modifier) {
+fun CatalogScreen(
+    modifier: Modifier = Modifier,
+    onBookClick: (BookUi) -> Unit = {}
+) {
     var query by remember { mutableStateOf("") }
     var selectedGenres by remember { mutableStateOf(setOf<String>()) }
     var sortOption by remember { mutableStateOf(CatalogSortOption.POPULAR) }
@@ -108,7 +112,11 @@ fun CatalogScreen(modifier: Modifier = Modifier) {
             }
         } else {
             items(filteredBooks, key = { it.id }) { book ->
-                BookCover(book = book, modifier = Modifier.fillMaxWidth())
+                BookCover(
+                    book = book,
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = { onBookClick(book) }
+                )
             }
         }
     }

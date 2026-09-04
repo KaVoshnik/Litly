@@ -10,5 +10,7 @@ data class BookUi(
     val title: String,
     val author: String,
     val genre: String,
+    val description: String = "",
+    val rating: Float = 0f,
     val progress: Float? = null // 0f..1f — прогресс чтения, null если книга не читается сейчас
 )

@@ -1,15 +1,32 @@
+# Gradle
+.gradle/
+caches/
+daemon/
+native/
+.kotlin/
+.kotlin-profile/
+.tmp/
+
+# Android Studio / IntelliJ
+.idea/
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+/wrapper
+/kotlin-profile
+
+# Local configuration
 local.properties
+
+# Build output
+build/
+**/build/
+
+# Native build
+.cxx/
+.externalNativeBuild/
+
+# Captures
+captures/
+
+# OS
+.DS_Store
+Thumbs.db

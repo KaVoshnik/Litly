@@ -24,6 +24,13 @@ import com.litly.app.ui.model.BookUi
 import kotlin.math.abs
 
 /**
+ * Стабильный псевдослучайный пастельный цвет обложки-заглушки —
+ * пока нет реальных картинок с backend (Sprint 11). Переиспользуется
+ * и на карточках, и на странице книги.
+ */
+fun BookUi.coverColor(): Color = LitlyCoverPalette[abs(id.hashCode()) % LitlyCoverPalette.size]
+
+/**
  * Карточка книги: обложка-заглушка (цвет + первая буква названия,
  * пока нет реальных картинок с backend) + название/автор снизу.
  * Если у книги есть progress — показываем полоску прогресса поверх обложки.
@@ -34,7 +41,7 @@ fun BookCover(
     modifier: Modifier = Modifier.width(120.dp),
     onClick: () -> Unit = {}
 ) {
-    val coverColor = LitlyCoverPalette[abs(book.id.hashCode()) % LitlyCoverPalette.size]
+    val coverColor = book.coverColor()
 
     Column(
         modifier = modifier.clickable(onClick = onClick)

@@ -3,13 +3,16 @@ package com.litly.app.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.litly.app.ui.book.BookScreen
 import com.litly.app.ui.catalog.CatalogScreen
 import com.litly.app.ui.home.HomeScreen
 import com.litly.app.ui.library.LibraryScreen
+import com.litly.app.ui.model.MockLibrary
 import com.litly.app.ui.profile.ProfileScreen
 import com.litly.app.ui.reader.ReaderScreen
 
@@ -25,11 +28,17 @@ fun LitlyNavHost(
     ) {
         composable(LitlyDestination.Home.route) {
             HomeScreen(
-                onOpenBook = { navController.navigate(LitlyDestination.Book.route) }
+                onOpenBook = { book ->
+                    navController.navigate(LitlyDestination.Book.createRoute(book.id))
+                }
             )
         }
         composable(LitlyDestination.Catalog.route) {
-            CatalogScreen()
+            CatalogScreen(
+                onBookClick = { book ->
+                    navController.navigate(LitlyDestination.Book.createRoute(book.id))
+                }
+            )
         }
         composable(LitlyDestination.Library.route) {
             LibraryScreen()
@@ -37,8 +46,17 @@ fun LitlyNavHost(
         composable(LitlyDestination.Profile.route) {
             ProfileScreen()
         }
-        composable(LitlyDestination.Book.route) {
+        composable(
+            route = LitlyDestination.Book.route,
+            arguments = listOf(
+                navArgument(LitlyDestination.ARG_BOOK_ID) { type = NavType.StringType }
+            )
+        ) { backStackEntry ->
+            val bookId = backStackEntry.arguments?.getString(LitlyDestination.ARG_BOOK_ID)
+            val book = MockLibrary.all.find { it.id == bookId }
             BookScreen(
+                book = book,
+                onBack = { navController.popBackStack() },
                 onRead = { navController.navigate(LitlyDestination.Reader.route) }
             )
         }
