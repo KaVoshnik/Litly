@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="litly_background">#F7F9FF</color>
+    <color name="litly_blue">#6BCBFF</color>
+    <color name="litly_pink">#FF82C8</color>
+    <color name="litly_purple_accent">#A78BFA</color>
+    <color name="litly_text">#202333</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+</resources>

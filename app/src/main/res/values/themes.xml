@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Базовая тема приложения. Экраны рисует Compose (LitlyTheme),
+         эта тема отвечает за системное окно/фон до первой отрисовки. -->
+    <style name="Theme.Litly" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/litly_blue</item>
+        <item name="colorPrimaryVariant">@color/litly_purple_accent</item>
+        <item name="colorOnPrimary">@color/litly_text</item>
+        <item name="colorSecondary">@color/litly_pink</item>
+        <item name="colorSecondaryVariant">@color/litly_purple_accent</item>
+        <item name="colorOnSecondary">@color/litly_text</item>
+        <item name="android:windowBackground">@color/litly_background</item>
+    </style>
+</resources>
